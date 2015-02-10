@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+	<title>Template</title>
+</head>
+<body>
+	<template id="theTemplate">
+		<h2></h2>
+		<p></p>
+		<hr>
+	</template>		
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script>
+    	//Basic data repped here. An Array with 4 JSON objects. 
+    	var arrayData = [
+    	{name: 'Bob', country: 'USA', age: '27'},
+    	{name: 'Tom', country: 'Ethiopia', age: '44'},
+    	{name: 'Shaz', country: 'Germany', age: '57'},
+    	{name: 'Dottie', country: 'Australia', age: '42'}
+    	];
+
+    	var templateData = document.querySelector('#theTemplate');
+    	for (var i = 0; i < arrayData.length; i++){
+    		var user = arrayData[i];
+    		//This clone holds all of the template structure and internal content.  
+    		var clone = templateData.content.cloneNode(true);
+    		var h2 = clone.querySelectorAll('h2');
+    		h2[0].innerHTML = user.name;
+    		var para = clone.querySelectorAll('p');
+    		para[0].innerHTML = 'Country:' + user.country + ' <br> Name:' + user.name;
+    		templateData.parentNode.appendChild(clone);
+    	}
+    </script>
+</body>
+</html>
